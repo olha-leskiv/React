@@ -1,16 +1,20 @@
 import { useState } from "react";
 import ImageList from './components/ImageList';
 import Search from './components/Search';
+import getImagesFromApi from "./api";
+import './css/App.css'
+
 
 function App() {
     const [images, setImages] = useState([]);
-
-    function onClick(imgs) {
-        setImages(imgs);
+     
+    const onClick = async (term) => {
+        let result = await getImagesFromApi(term);
+        setImages(result);
     }
 
     return (
-        <div>
+        <div className="app">
             <Search  onClick={onClick} />
             <ImageList images={images} />
         </div>

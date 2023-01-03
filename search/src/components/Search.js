@@ -1,26 +1,25 @@
 import { useState } from "react";
+import '../css/Search.css'
 
 function Search({ onClick }) {
+    const [term, setTerm] = useState('');
 
-    const handleKeyPress = (e) => {
-        if(e.key !== 'Enter') return;
-        getimagesFromAPi(e.currentTarget.value);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        onClick(term);
     }
 
-    async function getimagesFromAPi(term) {
-        try {
-            let response = await fetch('https://api.unsplash.com/search/photos/?query=' + term + '&client_id=XE_VbLJTfRRFWy6oy4TX-awxcQlqH3XrJ23R3-tB3xY');
-            let imgsCollection = await response.json();
-            onClick(await imgsCollection.results);
-        } catch(error) {
-            throw error;
-        }
-    }
+    const handleChange = (e) => {
+        setTerm(e.target.value);
+    }; 
 
-    return (
-        <div>
-            <label>Type and press enter</label>
-            <input onKeyDown={handleKeyPress} />
+    return ( 
+        <div className="search">
+            <form onSubmit={handleSubmit}>
+                <label>Type a word and press "Enter"</label>
+                <input placeholder="Example: cat" value={term} onChange={handleChange} />
+            </form>
         </div>
     )
 }

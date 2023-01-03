@@ -1,0 +1,9 @@
+* {
+    box-sizing: border-box;
+}
+
+.image-list {
+    columns: 6 400px;
+    column-gap: 15px;
+    margin: 0 auto;
+}
