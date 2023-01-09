@@ -1,19 +1,19 @@
 import { useState } from "react";
 
-function BookEdit({ book, onEdit, setShowEdit, title }) {
-    const [newTitle, setNewTitle] = useState(title);
+function BookEdit({ book, onSubmit}) {
+    const [newTitle, setNewTitle] = useState(book.title);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onEdit(book.id, newTitle);
-        setShowEdit(false);
+        onSubmit(book.id, newTitle);
     }
 
     return (
     <div>
-        <form onSubmit={handleSubmit} >
+        <form className="form-edit" onSubmit={handleSubmit} >
             <label>Edit title</label>
-            <input value={newTitle} placeholder="Enter new title" onChange={(e) => setNewTitle(e.target.value)} />
+            <input className="input" value={newTitle} placeholder="Enter new title" onChange={(e) => setNewTitle(e.target.value)} />
+            <button className="button is-primary" >Save</button>
         </form>
     </div>
 )};
