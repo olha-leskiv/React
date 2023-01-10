@@ -6,10 +6,7 @@ function BookCreate({ onCreate }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        onCreate({
-            id: Math.floor(Math.random() * 999999),
-            title: value,
-        });
+        onCreate(value);
         setValue('');
     }
   
